@@ -4,6 +4,7 @@ import toucanImg from "../../assets/birds/keel-billed-toucan.png";
 import blueJayImg from "../../assets/birds/blue-jay.png";
 import hummingbirdImg from "../../assets/birds/hummingbird.jpg";
 import peacockImg from "../../assets/birds/peacock.jpg";
+import grayHeronImg from "../../assets/birds/gray-heron.jpg";
 
 export const transparentImageData = [
   {
@@ -54,5 +55,13 @@ export const transparentImageData = [
     imageSrc: hummingbirdImg,
     credits:
       "https://pixabay.com/users/beto_mdp-17561499/?utm_source=link-attribution&utm_medium=referral&utm_campaign=image&utm_content=8662271",
+  },
+  {
+    name: "Gray Heron",
+    description:
+      "A large, striking wader known for its elegant gray plumage and long legs, commonly found near wetlands across Europe and Asia",
+    imageSrc: grayHeronImg,
+    credits:
+      "https://www.freepik.com/free-photo/closeup-shot-gray-heron-standing-branches-daytime_14890700.htm#fromView=search&page=2&position=34&uuid=bbbb39c2-0d2b-4ace-9f65-04b0edc4739d",
   },
 ];
