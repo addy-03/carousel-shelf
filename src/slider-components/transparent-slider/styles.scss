@@ -44,4 +44,30 @@
       // box-shadow: ;
     }
   }
+
+  .slider-details {
+    position: absolute;
+    top: 25%;
+    left: 5%;
+    z-index: 2;
+    padding: 20px;
+    backdrop-filter: blur(5px);
+    max-width: 35%;
+    border-radius: 10px;
+    font-family: "Poppins";
+
+    .heading {
+      color: rgb(48, 48, 48);
+      font-size: 2.5rem;
+      margin: 0;
+      font-weight: 900;
+    }
+
+    .details {
+      color: rgb(45, 45, 45);
+      font-size: 1.1rem;
+      margin: 14px 0;
+      font-weight: 500;
+    }
+  }
 }
