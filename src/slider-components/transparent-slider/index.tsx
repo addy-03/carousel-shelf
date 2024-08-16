@@ -20,10 +20,13 @@ const TransparentSlider = () => {
       .getElementsByClassName("slider-list")
       .item(0);
     console.log({ containerEl, sliderEl });
+    const detailsEl: any = document
+      .getElementsByClassName("slider-details")
+      .item(0);
 
     // Get the bounding rectangle of the original element (relative to the viewport)
     const rect = node.getBoundingClientRect();
-    if (!containerEl || !sliderEl) return;
+    if (!containerEl || !sliderEl || !detailsEl) return;
 
     // Get the bounding rectangle of the container (relative to the viewport)
     const containerRect = containerEl.getBoundingClientRect();
@@ -35,6 +38,7 @@ const TransparentSlider = () => {
     // Clone the original element
     const clone = node.cloneNode(true);
     sliderEl.style.display = "none";
+    detailsEl.style.display = "none";
 
     // Set the cloned element's initial position to match the original element's position relative to the container
     clone.style.position = "absolute";
@@ -58,10 +62,11 @@ const TransparentSlider = () => {
     clone.addEventListener("animationend", () => {
       // After the transition ends, show the slider again
       sliderEl.style.display = "flex";
+      detailsEl.style.display = "block";
+
       console.log("animation end");
 
       // Optionally, you can remove the clone if you no longer need it
-      // clone.remove();
 
       setSliderData((prevData: Array<ImageDataType>) => {
         const data = [...prevData];
@@ -69,22 +74,24 @@ const TransparentSlider = () => {
         console.log({ data, dataToShift });
         return [...data?.slice(index + 1), ...dataToShift];
       });
+
+      // setTimeout(() => clone.remove(), 1000);
     });
   };
 
-  const removeExpandClass = () => {
-    console.log("remove");
-    const sliderEls = document.getElementsByClassName("slider-image");
+  // const removeExpandClass = () => {
+  //   console.log("remove");
+  //   const sliderEls = document.getElementsByClassName("slider-image");
 
-    console.log({ sliderEls });
+  //   console.log({ sliderEls });
 
-    // Iterate over the HTMLCollection
-    for (let i = 0; i < sliderEls.length; i++) {
-      const el = sliderEls[i];
-      console.log(`Clicked element at index ${i}`, { el });
-      el.classList.remove("expand");
-    }
-  };
+  //   // Iterate over the HTMLCollection
+  //   for (let i = 0; i < sliderEls.length; i++) {
+  //     const el = sliderEls[i];
+  //     console.log(`Clicked element at index ${i}`, { el });
+  //     el.classList.remove("expand");
+  //   }
+  // };
 
   // const animateSliderImageExpand = () => {
   //   console.log("expand");
@@ -116,6 +123,19 @@ const TransparentSlider = () => {
     setSliderData(transparentImageData);
     // handleImageChange(0);
   }, []);
+
+  useEffect(() => {
+    // remove expand class
+    const sliderEls = document.getElementsByClassName(
+      "slider-item image-expand"
+    );
+
+    console.log({ sliderEls });
+    for (let i = 0; i < sliderEls?.length; i++) {
+      console.log({ sliderEl: sliderEls[i] });
+      sliderEls[i].remove();
+    }
+  }, [sliderData]);
 
   return (
     <div className="slider-container">
